@@ -98,12 +98,11 @@ public class PictureController {
     /**
      * 根据id获取图片(仅管理员可用)
      * @param id 图片id
-     * @param request 请求信息
      * @return 图片信息
      */
     @GetMapping("/get")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
-    public BaseResponse<Picture> getPictureById(long id, HttpServletRequest request) {
+    public BaseResponse<Picture> getPictureById(long id) {
         ThrowUtils.throwIf(id <= 0, ErrorCode.PARAMS_ERROR);
         //查询数据库
         Picture picture = pictureService.getById(id);
